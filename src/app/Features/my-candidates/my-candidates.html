@@ -1,0 +1,39 @@
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+    <div class="flex">
+    <div>
+        <label class="">Enter name</label>
+        <input type="text" formControlName="name" class=" px-3 py-2 border rounded" placeholder="enter name"
+            [class.border-red-500]="name.invalid && (name.touched || submitted)" />
+        @if(name.errors?.['required']&& (name.touched || submitted)){
+        <span class="text-red-500 text-sm whitespace-nowrap">
+            Name required
+        </span>
+        }
+    </div>
+
+    <br>
+    <div>
+        <label>Enter Email</label>
+        <input type="text" formControlName="email" class=" px-3 py-2 border rounded" placeholder="enter email"
+           [class.border-red-500]="email.invalid && (email.touched || submitted)" />
+            @if (email.touched|| submitted){
+        @if (email.errors?.['required']){
+        <span class="text-red-500 text-sm whitespace-nowrap">
+            Email required
+        </span>
+        }
+        @else if (email.errors?.['email']){
+        <span class="text-red-500 text-sm whitespace-nowrap">
+            Email is incorrect
+        </span>
+    }
+}
+    </div>
+ 
+</div>
+    <br>
+    <div><button type="submit" class="bg-indigo-600 text-white py-2 rounded">Submit</button></div>
+
+</form>
