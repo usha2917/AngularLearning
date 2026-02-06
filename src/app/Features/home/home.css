@@ -2,6 +2,55 @@
 
 /* You can add global styles to this file, and also import other style files */
 
+/* Bootstrap-like utility classes */
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.col-md-6,
+.col-md-12,
+.col-lg-6 {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+.col-md-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+@media (min-width: 992px) {
+    .col-lg-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+.mt-5 {
+    margin-top: 3rem;
+}
+
 a.edit-badge {
     border: none;
     color: #0041f0;
