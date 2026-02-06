@@ -1,22 +1,26 @@
 import { Component, ViewChild } from '@angular/core';
-import { MatPaginator, MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
 import { UserService } from '../../Service/user-service';
 import { CommonModule } from '@angular/common';
 import { UserModel } from '../../Models/user-model';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-user',
   imports: [CommonModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule],
+    MatSortModule,
+    MatButtonModule,
+    RouterLink],
   templateUrl: './user.html',
   styleUrl: './user.css',
 })
 export class User {
-   displayedColumns: string[] = ['id', 'name', 'email', 'phone', 'website'];
+   displayedColumns: string[] = ['id', 'name', 'email', 'phone', 'website', 'Action'];
   dataSource = new MatTableDataSource<UserModel>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

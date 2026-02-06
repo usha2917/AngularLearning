@@ -12,6 +12,12 @@ export const routes: Routes = [
     pathMatch:'full'  
   },
      {
+    path: 'home',
+     loadComponent: () =>
+          import('./Features/home/home').then(m => m.Home),
+    pathMatch:'full'  
+  },
+     {
     path: '',
     component: Layout, // ✅ Layout appears
     children: [

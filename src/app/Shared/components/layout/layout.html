@@ -1,4 +1,48 @@
-<nav class="bg-[#7500c0] p-4  text-white">
+<nav class="bg-[#7500c0] text-white">
+  <div class="max-w-8xl mx-auto px-4">
+    <div class="flex justify-between items-center h-16">
+
+      <!-- Logo -->
+      <div class="text-xl flex font-bold uppercase"> <img src="/Assets/Image/logo-sm.png" class="logo mr-3"/> Integrated Virtual ONBOARDING</div>
+
+      <!-- Right side -->
+      <div class="relative">
+
+        <!-- User Icon -->
+        <button (click)="toggleDropdown()" class="focus:outline-none">
+          <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center">
+            👤
+          </div>
+        </button>
+
+        <!-- Dropdown -->
+        <div *ngIf="isDropdownOpen"
+             class="absolute right-0 mt-3 w-56 bg-white text-gray-800 rounded shadow-lg p-4 z-50">
+
+          <p class="font-semibold">usha</p>
+          <p class="text-sm text-gray-500 mb-3">Admin</p>
+
+          <hr class="mb-3">
+
+          <button (click)="logout()"
+           
+            class="w-full text-left text-red-600 hover:bg-gray-100 px-2 py-1 rounded">
+            Logout
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</nav>
+<main class="p-4 w-full">
+    <router-outlet></router-outlet>
+  </main>
+<footer class="text-center bg-gray-300 py-2 footer">Accenture @2026</footer>
+
+
+
+<!-- <nav class="bg-[#7500c0] p-4  text-white">
     <div class="flex justify-between items-center">
           <button type="button" class="user-btn dropdown-toggle" data-toggle="dropdown">
                 <img src="/Assets/Image/logo-sm.png" class="logo"/>
@@ -22,4 +66,4 @@
  <main class="p-4 w-full">
     <router-outlet></router-outlet>
   </main>
-<footer>-----------------------</footer>
+<footer class="text-center bg-gray-300 py-2 footer">Accenture @2026</footer> -->

@@ -1,3 +1,4 @@
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
 @import "tailwindcss";
 
 .user-logo{
@@ -5,3 +6,17 @@
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/*Tab Style*/
+.mat-mdc-tab.mdc-tab{
+    background: #a100ff!important;
+    margin-right: 10px;
+}
+.mat-mdc-tab .mdc-tab__text-label{
+    color: #fff!important;
+}

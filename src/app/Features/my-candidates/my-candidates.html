@@ -1,39 +1,123 @@
+<!--one input used everywhere  -->
+<!-- FormControl: Manages the value and validation of a single form input. 
 
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+FormGroup: Manages a collection of FormControls as a single unit. 
 
-    <div class="flex">
-    <div>
-        <label class="">Enter name</label>
-        <input type="text" formControlName="name" class=" px-3 py-2 border rounded" placeholder="enter name"
-            [class.border-red-500]="name.invalid && (name.touched || submitted)" />
-        @if(name.errors?.['required']&& (name.touched || submitted)){
-        <span class="text-red-500 text-sm whitespace-nowrap">
-            Name required
-        </span>
-        }
-    </div>
+FormArray: Manages a dynamic list of FormControls or FormGroups.  -->
+<div class="p-6 bg-gray-100">
+  <div class="bg-white p-4 rounded shadow">
+    <mat-tab-group (selectedTabChange)="onTabChange($event)">
+      <mat-tab label="Home">
 
-    <br>
-    <div>
-        <label>Enter Email</label>
-        <input type="text" formControlName="email" class=" px-3 py-2 border rounded" placeholder="enter email"
-           [class.border-red-500]="email.invalid && (email.touched || submitted)" />
-            @if (email.touched|| submitted){
-        @if (email.errors?.['required']){
-        <span class="text-red-500 text-sm whitespace-nowrap">
-            Email required
-        </span>
-        }
-        @else if (email.errors?.['email']){
-        <span class="text-red-500 text-sm whitespace-nowrap">
-            Email is incorrect
-        </span>
-    }
-}
-    </div>
- 
+        <!--Forms start here-->
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="mt-5grid grid-cols-2 gap-4">
+          <div class="flex flex-col gap-1">
+            <label class="font-medium">Enter name</label>
+            <input
+              type="text"
+              formControlName="name"
+              class="px-3 py-2 border rounded"
+              placeholder="enter name"
+              [class.border-red-500]="name.invalid && (name.touched || submitted)"
+            />
+            @if (name.errors?.['required'] && (name.touched || submitted)) {
+              <span class="text-red-500 text-sm whitespace-nowrap"> Name required </span>
+            }
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label class="font-medium">Enter Email</label>
+            <input
+              type="text"
+              formControlName="email"
+              class="px-3 py-2 border rounded"
+              placeholder="enter email"
+              [class.border-red-500]="email.invalid && (email.touched || submitted)"
+            />
+            @if (email.touched || submitted) {
+              @if (email.errors?.['required']) {
+                <span class="text-red-500 text-sm whitespace-nowrap"> Email required </span>
+              } @else if (email.errors?.['email']) {
+                <span class="text-red-500 text-sm whitespace-nowrap"> Email is incorrect </span>
+              }
+            }
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="font-medium">Contact Number</label>
+            <input
+              type="text"
+              formControlName="contact"
+              class="px-3 py-2 border rounded"
+              placeholder="enter contact number"
+              [class.border-red-500]="contact.invalid && (contact.touched || submitted)"
+            />
+            @if (contact.errors?.['required'] && (contact.touched || submitted)) {
+              <span class="text-red-500 text-sm whitespace-nowrap"> Contact number required </span>
+            }
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label class="font-medium">Upload File</label>
+
+            <input
+              type="file"
+              (change)="onFileChange($event)"
+              class="border px-3 py-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
+              accept="image/*,.pdf,.doc,.docx"
+              [class.border-red-500]="
+                uploadFile.upload.invalid && (uploadFile.upload.touched || submitted)
+              "
+            />
+            @if (
+              uploadFile.upload.errors?.['required'] && (uploadFile.upload.touched || submitted)
+            ) {
+              <span class="text-red-500 text-sm whitespace-nowrap">
+                @if (
+                  uploadFile.upload.errors?.['required'] && (uploadFile.upload.touched || submitted)
+                ) {
+                  <span class="text-red-500 text-sm whitespace-nowrap"> File is required </span>
+                }
+              </span>
+            }
+            <!-- @if (uploadFile.upload.touched && uploadFile.upload.invalid) {
+      <small class="text-red-500">File is required</small>
+    } -->
+
+            <!-- Image Preview -->
+            @if (previewUrl) {
+              <div class="mt-2">
+                <p class="text-sm font-medium">Image Preview:</p>
+                <img [src]="previewUrl" class="w-40 h-40 object-cover border rounded mt-1" />
+              </div>
+            }
+
+            <!-- PDF / DOC Preview -->
+            @if (!previewUrl && uploadFile.upload.value) {
+              <div class="mt-2 text-sm text-blue-600">
+                Selected File: {{ uploadFile.upload.value.name }}
+              </div>
+
+              @if (uploadFile.upload.value.type === 'application/pdf') {
+                <a
+                  [href]="URL.createObjectURL(uploadFile.upload.value)"
+                  target="_blank"
+                  class="underline"
+                >
+                  Open PDF Preview
+                </a>
+              }
+            }
+          </div>
+
+          <div>
+            <button type="submit" class="bg-indigo-600 text-white py-2 mt-6 px-4 rounded">
+              Submit
+            </button>
+          </div>
+        </form>
+      </mat-tab>
+      <mat-tab label="Profile">Profile Content</mat-tab>
+      <mat-tab label="Settings">Settings Content</mat-tab>
+    </mat-tab-group>
+  </div>
 </div>
-    <br>
-    <div><button type="submit" class="bg-indigo-600 text-white py-2 rounded">Submit</button></div>
-
-</form>
